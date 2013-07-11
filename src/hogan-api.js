@@ -1,5 +1,5 @@
-/*jslint vars: true, plusplus: true, browser: true, forin: true */
-/*global window: false, Hogan: false */
+/*jslint vars: true, plusplus: true, browser: true, forin: true, browser: true */
+/*global console: false, Hogan: false */
 
 (function (root) {
     "use strict";
@@ -49,12 +49,5 @@
             }
         }
     }, false);
-
-    if (root.querySelectorAll) {
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('id', 'sandbox-hogan');
-        iframe.setAttribute('src', 'hogan.html');
-        root.querySelectorAll('body')[0].append(iframe);
-    }
 
 }(this));

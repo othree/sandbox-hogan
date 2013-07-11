@@ -6,14 +6,12 @@ module.exports = function (grunt) {
         jslint: {
             files: [
                 'src/**/*.js',
-                'helper/**/*.js',
                 'spec/**/*.js'
             ]
         },
         jasmine : {
             src : 'src/**/*.js',
             options : {
-                helpers : 'helper/**/*.js',
                 specs : 'spec/**/*.js'
             }
         }
