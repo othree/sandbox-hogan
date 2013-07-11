@@ -1,4 +1,4 @@
-SANDBOX-HOGAN
+Sandbox-Hogan
 =============
 
 Hogan uses eval code. And in chrome extension environment. It's not allow any eval out of sandbox.
