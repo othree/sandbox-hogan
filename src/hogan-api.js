@@ -1,5 +1,5 @@
 /*jslint vars: true, plusplus: true, browser: true, forin: true, browser: true */
-/*global console: false, Hogan: false */
+/*global console: false, Hogan: false, console: false */
 
 (function (root) {
     "use strict";
@@ -31,21 +31,23 @@
     };
 
     root.addEventListener('message', function (event) {
-        var args = event.data,
+        var data = event.data.hogan,
             method,
             arg;
 
+        if (!data) { return; }
+
         for (method in api) {
-            arg = args[method];
-            if (arg !== null) {
+            arg = data[method];
+            if (arg) {
                 if (!isArray(arg)) { arg = [arg]; }
 
                 event.source.postMessage({
                     hogan: {
                         event: method + 'Done',
-                        value: api[method].apply(null, args[method])
+                        value: api[method].apply(null, arg)
                     }
-                }, event.origin);
+                }, '*');
             }
         }
     }, false);
