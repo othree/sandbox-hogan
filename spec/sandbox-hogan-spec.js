@@ -60,8 +60,8 @@
         it("Render work", function () {
             var done = false;
             var handler = {
-                renderDone: function (text) {
-                    if (text === 'YES YES NONO') {
+                renderDone: function (data) {
+                    if (data.result === 'YES YES NONO') {
                         done = true;
                     }
                 }

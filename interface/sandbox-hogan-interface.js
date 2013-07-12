@@ -10,9 +10,10 @@
 
     var handler = {
         compileDone: function () {
+            console.log('template ready');
         },
-        renderDone: function (result) {
-            document.getElementById('share_txt').innerHTML = result;
+        renderDone: function (data) {
+            document.getElementById('share_txt').innerHTML = data.result;
         }
     };
 

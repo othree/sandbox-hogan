@@ -18,6 +18,7 @@
             }
             if (!name) { name = '_default'; }
             template[name] = Hogan.compile(text);
+            return { name: name };
         },
         render: function (name, data) {
             if (!data) {
@@ -26,7 +27,10 @@
             }
             if (!name) { name = '_default'; }
             if (!template[name]) { return ''; }
-            return template[name].render(data);
+            return {
+                name: name,
+                result: template[name].render(data)
+            };
         }
     };
 
