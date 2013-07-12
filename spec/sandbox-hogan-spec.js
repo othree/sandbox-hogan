@@ -4,6 +4,7 @@
     "use strict";
 
     var tpl = 'YES YES {{NONO}}';
+    var namedTpl = 'NAMED YES YES {{NONO}}';
 
     var inited = false;
 
@@ -88,6 +89,39 @@
                         render: {NONO: 'NONO'}
                     }
                 };
+                hogan.postMessage(data, '*');
+            });
+            waits(100);
+            runs(function () {
+                window.removeEventListener('message', onmessage);
+                expect(done).toBe(true);
+            });
+        });
+
+        it("Compile/Render with name", function () {
+            var done = false;
+            var handler = {
+                renderDone: function (data) {
+                    if (data.result === 'NAMED YES YES NONO') {
+                        done = true;
+                    }
+                }
+            };
+            var onmessage = function (event) {
+                var data = event.data.hogan;
+                if (!data) { return; }
+                var hand = handler[data.event];
+                if (typeof hand === 'function') { hand(data.value); }
+            };
+
+            waitsFor(isInited);
+            runs(function () {
+                var hogan = document.getElementById('sandbox-hogan').contentWindow;
+                var data = {};
+                window.addEventListener('message', onmessage, false);
+                data = { hogan: { compile: ['test case name', namedTpl] } };
+                hogan.postMessage(data, '*');
+                data = { hogan: { render: ['test case name', {NONO: 'NONO'}] } };
                 hogan.postMessage(data, '*');
             });
             waits(100);
