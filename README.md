@@ -53,6 +53,7 @@ And when work complete. The sandboxHogan will send message and result back:
         if (typeof hand === 'function') { hand(data.value); }
     }, false);
 
+Result will wrapped in 'hogan' object, so you can detect it to see is it hogan's reply.
 If you have multiple templates to use, you can give them name:
 
     sandboxHogan.postMessage({
