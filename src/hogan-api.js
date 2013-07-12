@@ -59,7 +59,13 @@
                     value = api[method].apply(null, arg);
                 } catch (error) {
                     result = 'Fail';
-                    value = null;
+                    var id = arg[2] || arg[1] || null;
+                    value = {
+                        error: error
+                    };
+                    if (id) {
+                        value.id = id
+                    }
                 }
 
                 event.source.postMessage({
