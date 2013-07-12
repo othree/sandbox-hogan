@@ -7,9 +7,9 @@ And you can use postMessage to communication betweem your normal page and sandbo
 
 This project defines an simple interface for compile and render mustache template via Hogan engine through postMessage.
 You can use this not only in iframe. Every window you canpostMessage to it. Can use this.
-
-API
----
+    
+USAGE
+-----
 
 postMessage data should use an object and contains a property called 'hoga':
 
@@ -80,6 +80,7 @@ And when result returns, you can access the template name:
         }
     };
 
+Hogan compile, render might fail. If fail, the response event will go to 'Fail' one. Ex: compileFail, renderFail.
 
 License
 -------
