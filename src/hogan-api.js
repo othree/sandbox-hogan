@@ -42,8 +42,11 @@
 
     root.addEventListener('message', function (event) {
         var data = event.data.hogan,
+            result = 'Done',
             method,
-            arg;
+            value,
+            arg,
+            id;
 
         if (!data) { return; }
 
@@ -52,19 +55,17 @@
             if (arg) {
                 if (!isArray(arg)) { arg = [arg]; }
 
-                var result = 'Done',
-                    value;
-
                 try {
                     value = api[method].apply(null, arg);
+                    result = 'Done';
                 } catch (error) {
                     result = 'Fail';
-                    var id = arg[2] || arg[1] || null;
+                    id = arg[2] || arg[1] || null;
                     value = {
                         error: error
                     };
                     if (id) {
-                        value.id = id
+                        value.id = id;
                     }
                 }
 
