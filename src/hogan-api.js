@@ -11,8 +11,9 @@
     var template = {};
 
     var api = {
-        compile: function (name, text) {
-            if (!text) {
+        compile: function (name, text, id) {
+            if (!id) {
+                id = text;
                 text = name;
                 name = null;
             }
@@ -20,17 +21,22 @@
             template[name] = Hogan.compile(text);
             return { name: name };
         },
-        render: function (name, data) {
-            if (!data) {
+        render: function (name, data, id) {
+            if (!id) {
+                id = data;
                 data = name;
                 name = null;
             }
             if (!name) { name = '_default'; }
             if (!template[name]) { return ''; }
-            return {
+            var result = {
                 name: name,
                 result: template[name].render(data)
             };
+            if (id) {
+                result.id = id;
+            }
+            return result;
         }
     };
 
@@ -46,10 +52,20 @@
             if (arg) {
                 if (!isArray(arg)) { arg = [arg]; }
 
+                var result = 'Done',
+                    value;
+
+                try {
+                    value = api[method].apply(null, arg);
+                } catch (error) {
+                    result = 'Fail';
+                    value = null;
+                }
+
                 event.source.postMessage({
                     hogan: {
-                        event: method + 'Done',
-                        value: api[method].apply(null, arg)
+                        event: method + result,
+                        value: value
                     }
                 }, '*');
             }
