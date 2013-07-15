@@ -119,9 +119,9 @@
                 var hogan = document.getElementById('sandbox-hogan').contentWindow;
                 var data = {};
                 window.addEventListener('message', onmessage, false);
-                data = { hogan: { compile: ['test case name', namedTpl] } };
+                data = { hogan: { compile: [namedTpl, 'test case name'] } };
                 hogan.postMessage(data, '*');
-                data = { hogan: { render: ['test case name', {NONO: 'NONO'}] } };
+                data = { hogan: { render: [{NONO: 'NONO'}, 'test case name'] } };
                 hogan.postMessage(data, '*');
             });
             waits(100);

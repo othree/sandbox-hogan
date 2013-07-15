@@ -11,20 +11,12 @@
     var template = {};
 
     var api = {
-        compile: function (name, text, id) {
-            if (!text) {
-                text = name;
-                name = null;
-            }
+        compile: function (tpl, name, id) {
             if (!name) { name = '_default'; }
-            template[name] = Hogan.compile(text);
+            template[name] = Hogan.compile(tpl);
             return { name: name, id: id };
         },
-        render: function (name, data, id) {
-            if (!data) {
-                data = name;
-                name = null;
-            }
+        render: function (data, name, id) {
             if (!name) { name = '_default'; }
             if (!template[name]) { return ''; }
             var result = {
