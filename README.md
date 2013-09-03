@@ -3,15 +3,15 @@ Sandbox-Hogan
 
 Hogan uses `new Function`, which is eval code. And for security concern. Some environment didn't allow
 eval code, ex: Chrome's extension environment. But it allows eval inside sandbox.
-And you can use postMessage to communication betweem your normal page and sandbox page.
+And you can use postMessage to communicate between your normal page and sandbox page.
 
 This project defines an simple interface for compile and render mustache template via Hogan engine through postMessage.
-You can use this not only in iframe. Every window you canpostMessage to it. Can use this.
+You can use this not only in iframe. Every window you can postMessage to it. Can use this.
     
 USAGE
 -----
 
-postMessage data should use an object and contains a property called 'hoga':
+postMessage data should use an object and contains a property called 'hogan':
 
     sandboxHogan.postMessage({
         hogan: {
