@@ -5,7 +5,7 @@ Hogan uses `new Function`, which is eval code. And for security concern. Some en
 eval code, ex: Chrome's extension environment. But it allows eval inside sandbox.
 And you can use postMessage to communicate between your normal page and sandbox page.
 
-This project defines an simple interface for compile and render mustache template via Hogan engine through postMessage.
+This project defines a simple interface for compile and render mustache template via Hogan engine through postMessage.
 You can use this not only in iframe. Every window you can postMessage to it. Can use this.
     
 USAGE
